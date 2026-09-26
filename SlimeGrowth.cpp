@@ -1,11 +1,11 @@
+#include "raylib.h"
 #include <chrono>
 #include <cstring>
 #include <iostream>
 #include <random>
-#include "raylib.h"
 using namespace std;
 
-const int x = 800, y = 800;
+const int x = 52, y = 52;
 
 int grid[y][x];
 int bgrid[y][x];
@@ -20,7 +20,7 @@ void check(int ri, int i, int j) {
     }
     break;
   case 2:
-    if (j > 1 ) {
+    if (j > 1) {
       grid[j - 1][i] = 1;
     } else {
       grid[j - 1][i] = 0;
@@ -88,25 +88,23 @@ int main() {
   memset(grid, 0, sizeof(grid));
   init();
 
-   
-   
-    // Main Logic
-    
-    // Draw Logic
-    for (int j = 0; j < y; j++) {
-      for (int i = 0; i < x; i++) {
-        int rint = distr(gen);
-        //cout << grid[j][i];
-      }
-      //cout << endl;
+  // Main Logic
+
+  // Draw Logic
+  for (int j = 0; j < y; j++) {
+    for (int i = 0; i < x; i++) {
+      int rint = distr(gen);
+      // cout << grid[j][i];
     }
+    // cout << endl;
+  }
 
-   InitWindow(800,800, "Slime Growth"); 
-   SetTargetFPS(8);
+  InitWindow(800, 800, "Slime Growth");
+  SetTargetFPS(8);
 
-   while (!WindowShouldClose()){
-    memcpy(bgrid,grid, sizeof(grid));
-    //Updation
+  while (!WindowShouldClose()) {
+    memcpy(bgrid, grid, sizeof(grid));
+    // Updation
     for (int j = 0; j < y; j++) {
       for (int i = 0; i < x; i++) {
         int rint = distr(gen);
@@ -116,22 +114,19 @@ int main() {
       }
     }
 
-    //DrawGrid
+    // DrawGrid
     BeginDrawing();
     ClearBackground(BLACK);
 
-    for ( int j = 0 ;j < y ; j++){
-      for ( int i = 0 ; i < x ; i++){
-        if (grid[j][i] == 1){
-          DrawRectangle( i*15 , j*15 ,15 , 15, YELLOW);
+    for (int j = 0; j < y; j++) {
+      for (int i = 0; i < x; i++) {
+        if (grid[j][i] == 1) {
+          DrawRectangle(i * 15, j * 15, 15, 15, YELLOW);
         }
       }
     }
     EndDrawing();
-
-
-   }
-   CloseWindow();
-   return 0;
-   
+  }
+  CloseWindow();
+  return 0;
 }
